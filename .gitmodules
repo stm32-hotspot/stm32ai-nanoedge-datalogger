@@ -1,0 +1,60 @@
+[submodule "Drivers/STM32CubeF4/stm32f4xx_hal_driver"]
+	path = Drivers/STM32CubeF4/stm32f4xx_hal_driver
+	url = https://github.com/STMicroelectronics/stm32f4xx_hal_driver
+[submodule "Drivers/STM32CubeF4/cmsis_device_f4"]
+	path = Drivers/STM32CubeF4/cmsis_device_f4
+	url = https://github.com/STMicroelectronics/cmsis_device_f4
+[submodule "Drivers/STM32CubeL4/stm32l4xx_hal_driver"]
+	path = Drivers/STM32CubeL4/stm32l4xx_hal_driver
+	url = https://github.com/STMicroelectronics/stm32l4xx_hal_driver
+[submodule "Drivers/STM32CubeL4/cmsis_device_l4"]
+	path = Drivers/STM32CubeL4/cmsis_device_l4
+	url = https://github.com/STMicroelectronics/cmsis_device_l4
+[submodule "Drivers/STM32CubeL5/stm32l5xx_hal_driver"]
+	path = Drivers/STM32CubeL5/stm32l5xx_hal_driver
+	url = https://github.com/STMicroelectronics/stm32l5xx_hal_driver
+[submodule "Drivers/STM32CubeL5/cmsis_device_l5"]
+	path = Drivers/STM32CubeL5/cmsis_device_l5
+	url = https://github.com/STMicroelectronics/cmsis_device_l5
+[submodule "Drivers/STM32CubeU5/stm32u5xx_hal_driver"]
+	path = Drivers/STM32CubeU5/stm32u5xx_hal_driver
+	url = https://github.com/STMicroelectronics/stm32u5xx_hal_driver
+[submodule "Drivers/STM32CubeU5/cmsis_device_u5"]
+	path = Drivers/STM32CubeU5/cmsis_device_u5
+	url = https://github.com/STMicroelectronics/cmsis_device_u5
+[submodule "Drivers/STM32CubeWB/stm32wbxx_hal_driver"]
+	path = Drivers/STM32CubeWB/stm32wbxx_hal_driver
+	url = https://github.com/STMicroelectronics/stm32wbxx_hal_driver
+[submodule "Drivers/STM32CubeWB/cmsis_device_wb"]
+	path = Drivers/STM32CubeWB/cmsis_device_wb
+	url = https://github.com/STMicroelectronics/cmsis_device_wb
+[submodule "Drivers/Sensors/hts221-pid"]
+	path = Drivers/Sensors/hts221-pid
+	url = https://github.com/STMicroelectronics/hts221-pid/
+[submodule "Drivers/Sensors/iis2mdc-pid"]
+	path = Drivers/Sensors/iis2mdc-pid
+	url = https://github.com/STMicroelectronics/iis2mdc-pid/
+[submodule "Drivers/Sensors/iis3dwb-pid"]
+	path = Drivers/Sensors/iis3dwb-pid
+	url = https://github.com/STMicroelectronics/iis3dwb-pid/
+[submodule "Drivers/Sensors/ism330dhcx-pid"]
+	path = Drivers/Sensors/ism330dhcx-pid
+	url = https://github.com/STMicroelectronics/ism330dhcx-pid/
+[submodule "Drivers/Sensors/ism330is-pid"]
+	path = Drivers/Sensors/ism330is-pid
+	url = https://github.com/STMicroelectronics/ism330is-pid/
+[submodule "Drivers/Sensors/lis2dw12-pid"]
+	path = Drivers/Sensors/lis2dw12-pid
+	url = https://github.com/STMicroelectronics/lis2dw12-pid/
+[submodule "Drivers/Sensors/lis2mdl-pid"]
+	path = Drivers/Sensors/lis2mdl-pid
+	url = https://github.com/STMicroelectronics/lis2mdl-pid/
+[submodule "Drivers/Sensors/lps22hh-pid"]
+	path = Drivers/Sensors/lps22hh-pid
+	url = https://github.com/STMicroelectronics/lps22hh-pid/
+[submodule "Drivers/Sensors/lsm6dso-pid"]
+	path = Drivers/Sensors/lsm6dso-pid
+	url = https://github.com/STMicroelectronics/lsm6dso-pid/
+[submodule "Drivers/Sensors/iis2dlpc-pid"]
+	path = Drivers/Sensors/iis2dlpc-pid
+	url = https://github.com/STMicroelectronics/iis2dlpc-pid/
