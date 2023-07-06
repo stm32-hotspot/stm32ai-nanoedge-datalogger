@@ -23,7 +23,7 @@
 #include <stdint.h>
 
 /* Define */
-#define AXIS_NUMBER 3
+#define AXIS_NUMBER 1
 #define DATA_INPUT_USER 256
 
 #ifndef __NEAI_STATE__

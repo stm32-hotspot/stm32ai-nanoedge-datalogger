@@ -23,8 +23,10 @@
 #include <stdint.h>
 
 /* Define */
+#define NEAI_ID "645e315b5c8b3e741051603a"
 #define AXIS_NUMBER 3
-#define DATA_INPUT_USER 256
+#define DATA_INPUT_USER 128
+#define MINIMUM_ITERATION_CALLS_FOR_EFFICIENT_LEARNING 7
 
 #ifndef __NEAI_STATE__
 #define __NEAI_STATE__
@@ -42,31 +44,11 @@ enum neai_state {
 #ifdef __cplusplus
 extern "C" {
 #endif
-	/**
-	 * @brief  Initialization can be run at the beginning to initialize the model.
-	 *         Later to initialize a new model and reset all knowledge.
-	 * @retval NEAI_OK in case of success.
-	 */
 	enum neai_state neai_anomalydetection_init(void);
-
-	/**
-	 * @brief  This function is used to learn patterns in your data.
-	 *         It can be used at any time, in the beginning to build the original knowledge base of the AI model.
-	 *         But also later, as an additional learning phase to complement the existing knowledge.
-	 * @param  data_input[] [IN]: Signal to be learn of size AXIS_NUMBER * DATA_INPUT_USER
-	 * @retval NEAI_NOT_ENOUGH_CALL_TO_LEARNING or NEAI_MINIMAL_RECOMMENDED_LEARNING_DONE.
-	 */
 	enum neai_state neai_anomalydetection_learn(float data_input[]);
-
-	/**
-	 * @brief  This function returns a similarity percentage.
-	 *         The mathematical distance between the incoming signal and the existing knowledge.
-	 * @param  data_input     [IN]: size of each buffer
-	 * @param  *similarity     [OUT]: The percentage of similarity [0-100] ("100" means completely similar, and "0" completely dissimilar).
-	 * @retval NEAI_OK in case of success
-	 */
 	enum neai_state neai_anomalydetection_detect(float data_input[], uint8_t *similarity);
-
+	enum neai_state neai_anomalydetection_set_sensitivity(float sensitivity);
+	float neai_anomalydetection_get_sensitivity(void);
 #ifdef __cplusplus
 }
 #endif
