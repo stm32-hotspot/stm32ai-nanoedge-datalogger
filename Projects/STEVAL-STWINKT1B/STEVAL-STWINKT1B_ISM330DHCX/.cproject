@@ -82,7 +82,7 @@
 					</folderInfo>
 					<sourceEntries>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Core"/>
-						<entry excluding="Sensors/hts221-pid/|Sensors/iis3dwb-pid/|Sensors/iis2mdc-pid/|Sensors/ism330is-pid/|Sensors/lis2dw12-pid/|Sensors/lis2mdl-pid/|Sensors/lps22hh-pid/|Sensors/lsm6dso-pid/|Sensors/vl53l5cx-api/|STM32CubeF4/|STM32CubeL4/cmsis_device_l4/Source/|STM32CubeL5/|STM32CubeU5/|STM32CubeWB/|STM32CubeL4/stm32l4xx_hal_driver/Src/*template.c|STM32CubeL4/stm32l4xx_hal_driver/Src/stm32l4xx_ll_*.c|Sensors/iis2dlpc-pid/" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="Drivers"/>
+						<entry excluding="Sensors/hts221-pid/|Sensors/iis3dwb-pid/|Sensors/iis2mdc-pid/|Sensors/ism330is-pid/|Sensors/lis2dw12-pid/|Sensors/lis2mdl-pid/|Sensors/lps22hh-pid/|Sensors/lsm6dso-pid/|Sensors/vl53l5cx-api/|STM32CubeF4/|STM32CubeL4/cmsis_device_l4/Source/|STM32CubeL5/|STM32CubeU5/|STM32CubeWB/|STM32CubeL4/stm32l4xx_hal_driver/Src/*template.c|STM32CubeL4/stm32l4xx_hal_driver/Src/stm32l4xx_ll_*.c|Sensors/iis2dlpc-pid/|STM32CubeC0/" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="Drivers"/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>

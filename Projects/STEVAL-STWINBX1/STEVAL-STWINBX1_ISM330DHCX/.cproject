@@ -82,7 +82,7 @@
 					</folderInfo>
 					<sourceEntries>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Core"/>
-						<entry excluding="STM32CubeF4/|STM32CubeL4/|STM32CubeL5/|STM32CubeWB/|Sensors/hts221-pid/|Sensors/iis2dlpc-pid/|Sensors/iis2mdc-pid/|Sensors/iis3dwb-pid/|Sensors/ism330is-pid/|Sensors/lis2dw12-pid/|Sensors/lis2mdl-pid/|Sensors/lps22hh-pid/|Sensors/lsm6dso-pid/|Sensors/vl53l5cx-api/|STM32CubeU5/cmsis_device_u5/Source/|STM32CubeU5/stm32u5xx_hal_driver/Src/*template.c|STM32CubeU5/stm32u5xx_hal_driver/Src/stm32u5xx_ll_*.c" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="Drivers"/>
+						<entry excluding="STM32CubeF4/|STM32CubeL4/|STM32CubeL5/|STM32CubeWB/|Sensors/hts221-pid/|Sensors/iis2dlpc-pid/|Sensors/iis2mdc-pid/|Sensors/iis3dwb-pid/|Sensors/ism330is-pid/|Sensors/lis2dw12-pid/|Sensors/lis2mdl-pid/|Sensors/lps22hh-pid/|Sensors/lsm6dso-pid/|Sensors/vl53l5cx-api/|STM32CubeU5/cmsis_device_u5/Source/|STM32CubeU5/stm32u5xx_hal_driver/Src/*template.c|STM32CubeU5/stm32u5xx_hal_driver/Src/stm32u5xx_ll_*.c|STM32CubeC0/" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="Drivers"/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
@@ -178,4 +178,5 @@
 			<autodiscovery enabled="false" problemReportingEnabled="true" selectedProfileId=""/>
 		</scannerConfigBuildInfo>
 	</storageModule>
+	<storageModule moduleId="refreshScope"/>
 </cproject>
