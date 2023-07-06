@@ -76,7 +76,8 @@ UART_HandleTypeDef huart2;
 /* USER CODE BEGIN PV */
 static int16_t data_raw_acceleration[3];
 static uint8_t whoamI, rst;
-uint8_t neai_similarity = 0, neai_state = 0, first_comm = 1, drdy = 0;
+uint8_t neai_similarity = 0, neai_state = 0, first_comm = 1;
+volatile uint8_t drdy = 0;
 uint16_t neai_cnt = 0, drdy_counter = 0;
 float neai_buffer[AXIS * SAMPLES] = {0};
 stmdev_ctx_t dev_ctx;

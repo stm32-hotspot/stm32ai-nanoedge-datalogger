@@ -94,7 +94,8 @@ UART_HandleTypeDef huart1;
 
 /* USER CODE BEGIN PV */
 static uint8_t whoamI, rst;
-uint8_t neai_similarity = 0, neai_state = 0, drdy = 0;
+uint8_t neai_similarity = 0, neai_state = 0;
+volatile uint8_t drdy = 0;
 uint16_t data_left = (uint16_t) SAMPLES, number_read = 0, neai_buffer_ptr = 0, neai_cnt = 0;
 float neai_time = 0.0;
 static float neai_buffer[AXIS * SAMPLES] = {0.0};

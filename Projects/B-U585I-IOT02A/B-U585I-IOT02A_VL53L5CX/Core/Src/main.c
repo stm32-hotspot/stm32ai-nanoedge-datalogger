@@ -73,7 +73,8 @@ UART_HandleTypeDef huart1;
 
 /* USER CODE BEGIN PV */
 uint8_t status, isAlive, isReady;
-uint8_t vl53l5_data_ready = 0, matrix_counter = 0, neai_similarity = 0, neai_state = 0;
+uint8_t matrix_counter = 0, neai_similarity = 0, neai_state = 0;
+volatile uint8_t vl53l5_data_ready = 0;
 uint16_t neai_cnt = 0;
 float neai_time = 0.0;
 float neai_buffer[SAMPLES] = {0.0};
