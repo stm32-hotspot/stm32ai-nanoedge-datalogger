@@ -49,30 +49,32 @@ These code examples allow to quickly create data loggers based on the following 
 
 ### Development boards
 
-- STEVAL-STWINKT1B : https://www.st.com/en/evaluation-tools/steval-stwinkt1b.html
 - B-U585I-IOT02A : https://www.st.com/en/evaluation-tools/b-u585i-iot02a.html
-- STM32L562E-DK : https://www.st.com/en/evaluation-tools/stm32l562e-dk.html
 - NUCLEO-F401RE : https://www.st.com/en/evaluation-tools/nucleo-f401re.html
 - NUCLEO-F411RE : https://www.st.com/en/evaluation-tools/nucleo-f411re.html
 - NUCLEO-L476RG : https://www.st.com/en/evaluation-tools/nucleo-l476rg.html
+- NUCLEO-U575ZI-Q : https://www.st.com/en/evaluation-tools/nucleo-u575zi-q.html
 - STEVAL-PROTEUS1 : https://www.st.com/en/evaluation-tools/steval-proteus1.html
-- 32L496GDISCOVERY : https://www.st.com/en/evaluation-tools/32l496gdiscovery.html
+- STEVAL-STWINKT1B : https://www.st.com/en/evaluation-tools/steval-stwinkt1b.html
+- STEVAL-STWINBX1 : https://www.st.com/en/evaluation-tools/steval-stwinbx1.html
+- STM32L496G-DISCO : https://www.st.com/en/evaluation-tools/32l496gdiscovery.html
+- STM32L562E-DK : https://www.st.com/en/evaluation-tools/stm32l562e-dk.html
 
 ### Sensors
 
 - ANALOG sensor
 - HTS221 : https://www.st.com/en/mems-and-sensors/hts221.html
+- IIS2DLPC : https://www.st.com/en/mems-and-sensors/iis2dlpc.html
 - IIS2MDC : https://www.st.com/en/mems-and-sensors/iis2mdc.html
+- IIS3DWB : https://www.st.com/en/mems-and-sensors/iis3dwb.html
 - IKA01A1 : https://www.st.com/en/ecosystems/x-nucleo-ika01a1.html
 - IMP34DT05 : https://www.st.com/en/mems-and-sensors/imp34dt05.html
 - ISM330DHCX : https://www.st.com/en/mems-and-sensors/ism330dhcx.html
-- IIS3DWB : https://www.st.com/en/mems-and-sensors/iis3dwb.html
 - ISM330IS : https://www.st.com/en/mems-and-sensors/ism330is.html
 - LIS2DW12 : https://www.st.com/en/mems-and-sensors/lis2dw12.html
 - LIS2MDL : https://www.st.com/en/mems-and-sensors/lis2mdl.html
 - LPS22HH : https://www.st.com/en/mems-and-sensors/lps22hh.html
 - LSM6DSO : https://www.st.com/en/mems-and-sensors/lsm6dso.html
-- IIS2DLPC : https://www.st.com/en/mems-and-sensors/iis2dlpc.html
 - MP23ABS1 : https://www.st.com/en/mems-and-sensors/mp23abs1.html
 - VL53L5CX : https://www.st.com/en/imaging-and-photonics-solutions/vl53l5cx.html
 
@@ -80,22 +82,22 @@ These code examples allow to quickly create data loggers based on the following 
 
 Here are the wire connections between the development boards and the sensors. We use ADC, SPI and I2C.
 
-| Boards / Sensors | **B-U585I-IOT02A**                                           | **NUCLEO_F401RE / F411RE / L476RG**                          | **PROTEUS1**                                                 | **STM32L562E-DK**                                          | **STWINKT1B**                                                | **32L496DISCOVERY**                         |
-| :--------------: | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :--------------------------------------------------------- | :----------------------------------------------------------- | :------------------------------------------ |
-|    **ANALOG**    | *1) ADC1_IN1 <> PC0*                                         |                                                              |                                                              |                                                            |                                                              |                                             |
-|    **HTS221**    |                                                              | *1) I2C1 - SCL <> PB8 // SDA <> PB9<br />2) EXTI10 <> PA10*  |                                                              |                                                            |                                                              |                                             |
-|   **IIS2MDC**    | *1) I2C2 - SCL <> PH4 // SDA <> PH5 <br />2) EXTI10 <> PD10* |                                                              |                                                              |                                                            | *1) I2C2 - SCL <> PF0 // SDA <> PF1 <br />2) EXTI9 <> PF9*   |                                             |
-|   **IIS3DWB**    |                                                              |                                                              | *1) SPI1 - SCK <>  PA5 // MISO <> PA6 // MOSI <> PB5 <br />2) EXTI3 <> PE3* |                                                            |                                                              |                                             |
-|   **IKA01A1**    |                                                              | *1) ADC1_IN4 <> PA4*<br />*! Not yet for L476RG !*           |                                                              |                                                            |                                                              |                                             |
-|  **IMP34DT05**   |                                                              |                                                              |                                                              |                                                            |                                                              | *1) DFSDM1 - DATIN3 <> PC7 // CKOUT <> PC2* |
-|  **ISM330DHCX**  | *1) I2C2 - SCL <> PH4 // SDA <> PH5 <br />2) EXTI11 <> PE11* |                                                              | *1) SPI1 - SCK <> PA5 // MISO <> PA6 // MOSI <> PB5 <br />2) EXTI4 <> PE4* |                                                            | *1) SPI3 - SCK <> PB3 // MISO <> PB4 // MOSI <> PB5 <br />2) EXTI8 <> PE8* |                                             |
-|  **ISM330ISN**   |                                                              | *1) I2C1 - SCL <> PB8 // SDA <> PB9 <br />2) EXTI0 <> PC0*   |                                                              |                                                            |                                                              |                                             |
-|   **LIS2DW12**   |                                                              | *1) I2C1 - SCL <> PB8 // SDA <> PB9 <br />2) EXTI0 <> PB0*   |                                                              |                                                            |                                                              |                                             |
-|   **LIS2MDL**    |                                                              | *1) I2C1 - SCL <> PB8 // SDA <> PB9 <br />2) EXTI4 <> PA4*   |                                                              |                                                            |                                                              |                                             |
-|   **LPS22HH**    |                                                              | *1) I2C1 - SCL <> PB8 // SDA <> PB9 <br />2) EXTI10 <> PB10* |                                                              |                                                            |                                                              |                                             |
-|   **LSM6DSO**    |                                                              | *1) I2C1 - SCL <> PB8 // SDA <> PB9 <br />2) EXTI5 <> PB5*   |                                                              | *1) I2C1 - SCL <> PB6 // SDA <> PB7 <br />2) EXTI3 <> PF3* |                                                              |                                             |
-|   **MP23ABS1**   |                                                              |                                                              |                                                              |                                                            | *1) ADC1_IN2 <> PC1*                                         |                                             |
-|   **VL53L5CX**   | *1) I2C2 - SCL <> PH4 // SDA <> PH5 <br />2) EXTI5 <> PG5*   |                                                              |                                                              |                                                            |                                                              |                                             |
+| Boards / Sensors | **B-U585I-IOT02A**                                           | **NUCLEO-F401RE / F411RE / L476RG**                          | NUCLEO-U575ZI-Q      | **STEVAL-PROTEUS1**                                          | STEVAL-STWINBX1                                              | **STEVAL-STWINKT1B**                                         | **STM32L496G-DISCO**                        | **STM32L562E-DK**                                          |
+| :--------------: | :----------------------------------------------------------- | :----------------------------------------------------------- | -------------------- | :----------------------------------------------------------- | ------------------------------------------------------------ | :----------------------------------------------------------- | :------------------------------------------ | :--------------------------------------------------------- |
+|    **ANALOG**    | *1) ADC1_IN1 <> PC0*                                         |                                                              |                      |                                                              |                                                              |                                                              |                                             |                                                            |
+|    **HTS221**    |                                                              | *1) I2C1 - SCL <> PB8 // SDA <> PB9<br />2) EXTI10 <> PA10*  |                      |                                                              |                                                              |                                                              |                                             |                                                            |
+|   **IIS2MDC**    | *1) I2C2 - SCL <> PH4 // SDA <> PH5 <br />2) EXTI10 <> PD10* |                                                              |                      |                                                              |                                                              | *1) I2C2 - SCL <> PF0 // SDA <> PF1 <br />2) EXTI9 <> PF9*   |                                             |                                                            |
+|   **IIS3DWB**    |                                                              |                                                              |                      | *1) SPI1 - SCK <>  PA5 // MISO <> PA6 // MOSI <> PB5 <br />2) EXTI3 <> PE3* | *1) SPI2 - SCK <>  PI1 // MISO <> PD3 // MOSI <> PI3 <br />2) EXTI15 <> PF15* |                                                              |                                             |                                                            |
+|   **IKA01A1**    |                                                              | *1) ADC1_IN4 <> PA4*<br />*! Not yet for L476RG !*           | *1) ADC1_IN4 <> PC3* |                                                              |                                                              |                                                              |                                             |                                                            |
+|  **IMP34DT05**   |                                                              |                                                              |                      |                                                              |                                                              |                                                              | *1) DFSDM1 - DATIN3 <> PC7 // CKOUT <> PC2* |                                                            |
+|  **ISM330DHCX**  | *1) I2C2 - SCL <> PH4 // SDA <> PH5 <br />2) EXTI11 <> PE11* |                                                              |                      | *1) SPI1 - SCK <> PA5 // MISO <> PA6 // MOSI <> PB5 <br />2) EXTI4 <> PE4* | *1) SPI2 - SCK <>  PI1 // MISO <> PD3 // MOSI <> PI3 <br />2) EXTI8 <> PB8* | *1) SPI3 - SCK <> PB3 // MISO <> PB4 // MOSI <> PB5 <br />2) EXTI8 <> PE8* |                                             |                                                            |
+|  **ISM330ISN**   |                                                              | *1) I2C1 - SCL <> PB8 // SDA <> PB9 <br />2) EXTI0 <> PC0*   |                      |                                                              |                                                              |                                                              |                                             |                                                            |
+|   **LIS2DW12**   |                                                              | *1) I2C1 - SCL <> PB8 // SDA <> PB9 <br />2) EXTI0 <> PB0*   |                      |                                                              |                                                              |                                                              |                                             |                                                            |
+|   **LIS2MDL**    |                                                              | *1) I2C1 - SCL <> PB8 // SDA <> PB9 <br />2) EXTI4 <> PA4*   |                      |                                                              |                                                              |                                                              |                                             |                                                            |
+|   **LPS22HH**    |                                                              | *1) I2C1 - SCL <> PB8 // SDA <> PB9 <br />2) EXTI10 <> PB10* |                      |                                                              |                                                              |                                                              |                                             |                                                            |
+|   **LSM6DSO**    |                                                              | *1) I2C1 - SCL <> PB8 // SDA <> PB9 <br />2) EXTI5 <> PB5*   |                      |                                                              |                                                              |                                                              |                                             | *1) I2C1 - SCL <> PB6 // SDA <> PB7 <br />2) EXTI3 <> PF3* |
+|   **MP23ABS1**   |                                                              |                                                              |                      |                                                              |                                                              | *1) ADC1_IN2 <> PC1*                                         |                                             |                                                            |
+|   **VL53L5CX**   | *1) I2C2 - SCL <> PH4 // SDA <> PH5 <br />2) EXTI5 <> PG5*   |                                                              |                      |                                                              |                                                              |                                                              |                                             |                                                            |
 
 *PS : EXTI = External Interrupt pin.*
 
@@ -106,13 +108,11 @@ Here are the wire connections between the development boards and the sensors. We
 These STM32Cube projects has been developped and tested under STM32CubeIDE v1.10.1. It requires installing following softwares and packages:
 
 - The STM32CubeIDE software: [Download](https://www.st.com/en/development-tools/stm32cubeide.html#get-software)
-- A serial port terminal, for example PuTTY: [Download](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html)
 
-[optional] To create your own NanoEdge AI project, following softwares are also required:
+To create your own NanoEdge AI project, following softwares are also required:
 
 - The NanoEdge AI Studio software: [Download](https://www.st.com/en/development-tools/nanoedgeaistudio.html#get-software)
-
-  
+- A serial port terminal, for example PuTTY: [Download](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html)
 
 ### Macros definitions
 
