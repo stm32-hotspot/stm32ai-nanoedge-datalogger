@@ -1,9 +1,3 @@
-[submodule "Drivers/STM32CubeC0/stm32c0xx_hal_driver"]
-	path = Drivers/STM32CubeC0/stm32c0xx_hal_driver
-	url = https://github.com/STMicroelectronics/stm32c0xx_hal_driver
-[submodule "Drivers/STM32CubeC0/cmsis_device_c0"]
-	path = Drivers/STM32CubeC0/cmsis_device_c0
-	url = https://github.com/STMicroelectronics/cmsis_device_c0
 [submodule "Drivers/STM32CubeF4/stm32f4xx_hal_driver"]
 	path = Drivers/STM32CubeF4/stm32f4xx_hal_driver
 	url = https://github.com/STMicroelectronics/stm32f4xx_hal_driver
@@ -64,3 +58,9 @@
 [submodule "Drivers/Sensors/iis2dlpc-pid"]
 	path = Drivers/Sensors/iis2dlpc-pid
 	url = https://github.com/STMicroelectronics/iis2dlpc-pid/
+[submodule "Drivers/STM32CubeC0/cmsis_device_c0"]
+	path = Drivers/STM32CubeC0/cmsis_device_c0
+	url = https://github.com/STMicroelectronics/cmsis_device_c0
+[submodule "Drivers/STM32CubeC0/stm32c0xx_hal_driver"]
+	path = Drivers/STM32CubeC0/stm32c0xx_hal_driver
+	url = https://github.com/STMicroelectronics/stm32c0xx_hal_driver
