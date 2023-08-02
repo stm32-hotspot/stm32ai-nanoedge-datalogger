@@ -20,12 +20,13 @@ Currently, 8 development board and 15 sensors are available
     - [Software](#software)
       - [Prerequisites](#prerequisites)
       - [Macros definitions](#macros-definitions)
-      	- [General marcos](#general-macros)
-    	- [Sensors specificities](#sensors-specificities)
-    	  - [Accelerometer & gyroscope](#accelerometer-&-gyroscope)
-    	  - [Time of flight](#time-of-flight)
-    	- [In all projects](#in-all-projects)
-    	- [Prohibited](#prohibited)
+      - [General marcos](#general-macros)
+      - [Sensors specificities](#sensors-specificities)
+        - [Accelerometer & gyroscope](#accelerometer-&-gyroscope)
+        - [Time of flight](#time-of-flight)
+      - [In all projects](#in-all-projects)
+      - [Prohibited](#prohibited)
+    - [Data acquisition](#data-acquisition)
     - [NanoEdge AI library integration](#nanoedge-ai-library-integration)
     - [Running and flashing the application on the board](#running-and-flashing-the-application-on-the-board)
 
@@ -234,6 +235,75 @@ For accelerometer / gyroscope sensors do not modify the following macros !
 #define FIFO_FULL                       512                       /* FIFO full size */
 #define FIFO_WORD                       7                         /* FIFO word size composed of 1 byte which is identification tag & 6 bytes of fixed data */
 ```
+
+### Data acquisition
+
+Here are 3 different ways to collect your data :
+
+1. **Putty**
+
+   Putty is a free Implementation of SSH and Telnet for Windows and Unix platforms.
+
+   - Download link for Windows : https://www.putty.org/
+
+
+   - For Unix, you can run the following command :
+
+     ```bash
+     sudo apt-get install putty
+     ```
+
+   Putty is really simple to use, open it then, in "Session > Login", check "Serial" :
+
+   <img src="images/serial.png" alt="serial" style="zoom:50%;" />
+
+   In this window, you just have to 
+
+   - Set the good COM port (Windows) or ttyACM (Unix) depending on your OS.
+   - Set the speed to 115200.
+
+   Once you've done this step, **you need to uncheck the following parameter** :
+
+   <img src="images/flush.png" alt="flush" style="zoom:50%;" />
+
+   In "Session > Logging", you have to unchecked "Flush log file frequently". If you left this box checked, you won't reach the maximum data rate.
+
+   As we can see on the picture, if you want to get the data in an output file, you need to check "Printable output" then define the output file path.
+
+2. **Python**
+
+   Collecting the data using python should be done using a script like this :
+
+   ```python
+   import serial, os
+   
+   def get_usb_data():
+      while 1:
+         while (ser.inWaiting() > 0):
+            data=ser.read(ser.inWaiting()).decode()
+            f = open('output_file.txt','a') 
+            data=str(data)
+            f.write(data)
+   
+   if __name__ == "__main__":
+      ser = serial.Serial('your_com_port', 0, timeout=0)
+      if os.path.exists("output_file.txt"):
+         os.remove("output_file.txt")
+      get_usb_data()
+   ```
+
+3. **BASH**
+
+   If you want to use BASH to get your data, you can run the following commands :
+
+   ```bash
+   stty -F your_com_port 115200 raw -clocal -echo icrnl
+   cat your_com_port
+   ```
+
+   Where "*your_com_port*" is something like /dev/ttyACMXX (Unix) or COMXX (Windows).
+
+   In Unix system you just have to open a terminal to run this command but in Windows, you should install "Git for Windows" which allows you to have a BASH emulation to run the command line. Download link : https://gitforwindows.org/
 
 ### NanoEdge AI library integration
 
