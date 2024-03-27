@@ -151,9 +151,9 @@ int main(void)
       /* Read magnetic field data */
       memset(data_raw_magnetic, 0x00, 3 * sizeof(int16_t));
       lis2mdl_magnetic_raw_get(&dev_ctx, data_raw_magnetic);
-      neai_buffer[AXIS * drdy_counter] = lis2mdl_from_lsb_to_mgauss(data_raw_magnetic[0]);
-      neai_buffer[(AXIS * drdy_counter) + 1] = lis2mdl_from_lsb_to_mgauss(data_raw_magnetic[1]);
-      neai_buffer[(AXIS * drdy_counter) + 2] = lis2mdl_from_lsb_to_mgauss(data_raw_magnetic[2]);
+      for (uint8_t i = 0; i < AXIS; i++) {
+        neai_buffer[(AXIS * drdy_counter) + i] = lis2mdl_from_lsb_to_mgauss(data_raw_magnetic[i]);
+      }
       drdy_counter++;
       if (drdy_counter >= SAMPLES) {
         /* Set device in power down mode */

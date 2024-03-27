@@ -155,9 +155,9 @@ int main(void)
       /* Read acceleration data */
       memset(data_raw_acceleration, 0x00, 3 * sizeof(int16_t));
       ism330is_acceleration_raw_get(&dev_ctx, data_raw_acceleration);
-      neai_buffer[AXIS * drdy_counter] = ism330is_convert_accel_data_to_mg(data_raw_acceleration[0]);
-      neai_buffer[(AXIS * drdy_counter) + 1] = ism330is_convert_accel_data_to_mg(data_raw_acceleration[1]);
-      neai_buffer[(AXIS * drdy_counter) + 2] = ism330is_convert_accel_data_to_mg(data_raw_acceleration[2]);
+      for (uint8_t i = 0; i < AXIS; i++) {
+        neai_buffer[(AXIS * drdy_counter) + i] = ism330is_convert_accel_data_to_mg(data_raw_acceleration[i]);
+      }
       drdy_counter++;
       if (drdy_counter >= SAMPLES) {
 #if NEAI_MODE

@@ -633,16 +633,16 @@ static void ism330dhcx_get_buffer_from_fifo(uint16_t nb)
     if(reg_tag == ISM330DHCX_XL_NC_TAG) {
       memset(data_raw_acceleration, 0x00, 3 * sizeof(int16_t));
       ism330dhcx_fifo_out_raw_get(&dev_ctx, (uint8_t *) data_raw_acceleration);
-      neai_buffer[(AXIS * neai_buffer_ptr) + (AXIS * i)] = ism330dhcx_convert_accel_data_to_mg(data_raw_acceleration[0]);
-      neai_buffer[(AXIS * neai_buffer_ptr) + (AXIS * i) + 1] = ism330dhcx_convert_accel_data_to_mg(data_raw_acceleration[1]);
-      neai_buffer[(AXIS * neai_buffer_ptr) + (AXIS * i) + 2] = ism330dhcx_convert_accel_data_to_mg(data_raw_acceleration[2]);
+      for(uint8_t j = 0; j < AXIS; j++) {
+	neai_buffer[(AXIS * neai_buffer_ptr) + (AXIS * i) + j] = ism330dhcx_convert_accel_data_to_mg(data_raw_acceleration[j]);
+      }
     }
     else if(reg_tag == ISM330DHCX_GYRO_NC_TAG) {
       memset(data_raw_angular_rate, 0x00, 3 * sizeof(int16_t));
       ism330dhcx_fifo_out_raw_get(&dev_ctx, (uint8_t *) data_raw_angular_rate);
-      neai_buffer[(AXIS * neai_buffer_ptr) + (AXIS * i)] = ism330dhcx_convert_gyro_data_to_mdps(data_raw_angular_rate[0]);
-      neai_buffer[(AXIS * neai_buffer_ptr) + (AXIS * i) + 1] = ism330dhcx_convert_gyro_data_to_mdps(data_raw_angular_rate[1]);
-      neai_buffer[(AXIS * neai_buffer_ptr) + (AXIS * i) + 2] = ism330dhcx_convert_gyro_data_to_mdps(data_raw_angular_rate[2]);
+      for(uint8_t j = 0; j < AXIS; j++) {
+	neai_buffer[(AXIS * neai_buffer_ptr) + (AXIS * i) + j] = ism330dhcx_convert_gyro_data_to_mdps(data_raw_angular_rate[j]);
+      }
     }
     else {
       /* Flush unused samples */

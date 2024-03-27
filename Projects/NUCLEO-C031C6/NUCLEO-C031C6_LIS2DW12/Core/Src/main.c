@@ -155,9 +155,9 @@ int main(void)
       /* Read acceleration data */
       memset(data_raw_acceleration, 0x00, 3 * sizeof(int16_t));
       lis2dw12_acceleration_raw_get(&dev_ctx, data_raw_acceleration);
-      neai_buffer[AXIS * drdy_counter] = lis2dw12_convert_data_to_mg(data_raw_acceleration[0]);
-      neai_buffer[(AXIS * drdy_counter) + 1] = lis2dw12_convert_data_to_mg(data_raw_acceleration[1]);
-      neai_buffer[(AXIS * drdy_counter) + 2] = lis2dw12_convert_data_to_mg(data_raw_acceleration[2]);
+      for (uint8_t i = 0; i < AXIS; i++) {
+        neai_buffer[(AXIS * drdy_counter) + i] = lis2dw12_convert_data_to_mg(data_raw_acceleration[i]);
+      }
       drdy_counter++;
       if (drdy_counter >= SAMPLES) {
         /* Set Output Data Rate */

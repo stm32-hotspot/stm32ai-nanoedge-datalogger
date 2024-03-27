@@ -575,9 +575,9 @@ static void iis3dwb_get_buffer_from_fifo(uint16_t nb)
   for (uint16_t i = 0; i < nb; i++) {
     if (fifo_data[i].tag >> 3 == IIS3DWB_XL_TAG) {
       /* Fill neai_buffer with accelerometer data */
-      neai_buffer[(AXIS * neai_buffer_ptr) + (AXIS * i)] = iis3dwb_convert_accel_data_to_mg((int16_t) fifo_data[i].data[1] << 8 | fifo_data[i].data[0]);
-      neai_buffer[(AXIS * neai_buffer_ptr) + (AXIS * i) + 1] = iis3dwb_convert_accel_data_to_mg((int16_t) fifo_data[i].data[3] << 8 | fifo_data[i].data[2]);
-      neai_buffer[(AXIS * neai_buffer_ptr) + (AXIS * i) + 2] = iis3dwb_convert_accel_data_to_mg((int16_t) fifo_data[i].data[5] << 8 | fifo_data[i].data[4]);
+      for(uint8_t j = 0; j < AXIS; j++) {
+	neai_buffer[(AXIS * neai_buffer_ptr) + (AXIS * i) + j] = iis3dwb_convert_accel_data_to_mg((int16_t) fifo_data[i].data[(2 * j) + 1] << 8 | fifo_data[i].data[(2 * j)]);
+      }
     }
     else {
       /* Bad tag sensor */

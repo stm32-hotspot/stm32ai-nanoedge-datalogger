@@ -158,9 +158,9 @@ int main(void)
       drdy = 0;
       memset(data_raw_acceleration, 0x00, 3 * sizeof(int16_t));
       iis2dlpc_acceleration_raw_get(&dev_ctx, data_raw_acceleration);
-      neai_buffer[AXIS * drdy_counter] = iis2dlpc_convert_accel_data_to_mg(data_raw_acceleration[0]);
-      neai_buffer[(AXIS * drdy_counter) + 1] = iis2dlpc_convert_accel_data_to_mg(data_raw_acceleration[1]);
-      neai_buffer[(AXIS * drdy_counter) + 2] = iis2dlpc_convert_accel_data_to_mg(data_raw_acceleration[2]);
+      for (uint8_t i = 0; i < AXIS; i++) {
+        neai_buffer[(AXIS * drdy_counter) + i] = iis2dlpc_convert_accel_data_to_mg(data_raw_acceleration[i]);
+      }
       drdy_counter++;
       if (drdy_counter >= SAMPLES) {
 #if NEAI_MODE

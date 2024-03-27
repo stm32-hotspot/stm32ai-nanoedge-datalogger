@@ -857,14 +857,14 @@ static void ism330dhcx_get_buffer_from_fifo(uint16_t nb)
     /* According to the datasheet, the TAG_SENSOR is the 5 MSB of the FIFO_DATA_OUT_TAG register, so we shift 3 bits to the right */
     reg_tag = buff_tmp[FIFO_WORD * i] >> 3;
     if(reg_tag == ISM330DHCX_XL_NC_TAG) {
-      neai_buffer[(AXIS * neai_buffer_ptr) + (AXIS * i)] = ism330dhcx_convert_accel_data_to_mg((uint16_t) buff_tmp[(FIFO_WORD * i) + 2] << 8 | buff_tmp[(FIFO_WORD * i) + 1]);
-      neai_buffer[(AXIS * neai_buffer_ptr) + (AXIS * i) + 1] = ism330dhcx_convert_accel_data_to_mg((uint16_t) buff_tmp[(FIFO_WORD * i) + 4] << 8 | buff_tmp[(FIFO_WORD * i) + 3]);
-      neai_buffer[(AXIS * neai_buffer_ptr) + (AXIS * i) + 2] = ism330dhcx_convert_accel_data_to_mg((uint16_t) buff_tmp[(FIFO_WORD * i) + 6] << 8 | buff_tmp[(FIFO_WORD * i) + 5]);
+      for(uint8_t j = 0; j < AXIS; j++) {
+	neai_buffer[(AXIS * neai_buffer_ptr) + (AXIS * i) + j] = ism330dhcx_convert_accel_data_to_mg((uint16_t) buff_tmp[(FIFO_WORD * i) + (2 * j) + 2] << 8 | buff_tmp[(FIFO_WORD * i) + (2 * j) + 1]);
+      }
     }
     else if(reg_tag == ISM330DHCX_GYRO_NC_TAG) {
-      neai_buffer[(AXIS * neai_buffer_ptr) + (AXIS * i)] = ism330dhcx_convert_gyro_data_to_mdps((uint16_t) buff_tmp[(FIFO_WORD * i) + 2] << 8 | buff_tmp[(FIFO_WORD * i) + 1]);
-      neai_buffer[(AXIS * neai_buffer_ptr) + (AXIS * i) + 1] = ism330dhcx_convert_gyro_data_to_mdps((uint16_t) buff_tmp[(FIFO_WORD * i) + 4] << 8 | buff_tmp[(FIFO_WORD * i) + 3]);
-      neai_buffer[(AXIS * neai_buffer_ptr) + (AXIS * i) + 2] = ism330dhcx_convert_gyro_data_to_mdps((uint16_t) buff_tmp[(FIFO_WORD * i) + 6] << 8 | buff_tmp[(FIFO_WORD * i) + 5]);
+      for(uint8_t j = 0; j < AXIS; j++) {
+	neai_buffer[(AXIS * neai_buffer_ptr) + (AXIS * i) + j] = ism330dhcx_convert_gyro_data_to_mdps((uint16_t) buff_tmp[(FIFO_WORD * i) + (2 * j) + 2] << 8 | buff_tmp[(FIFO_WORD * i) + (2 * j) + 1]);
+      }
     }
   }
   neai_buffer_ptr += nb;
