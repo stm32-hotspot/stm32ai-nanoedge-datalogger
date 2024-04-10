@@ -39,23 +39,22 @@
 /* USER CODE BEGIN PD */
 /************************************************************ NEAI algorithm defines begin ************************************************************/
 /************************************************************ Global settings part ************************************************************/
-#define MATRIX_RESOLUTION   64                                    /* 16 if resolution is VL53L5CX_RESOLUTION_4X4 else, 64 if VL53L5CX_RESOLUTION_8X8 */
-#ifndef SUCCESSIVE_MATRIX
-#define SUCCESSIVE_MATRIX   8                                     /* The number of successive matrix to get in the neai buffer */
+#ifndef FRAME_RESOLUTION
+  #define FRAME_RESOLUTION 	64                                   /* 16 if resolution is VL53L5CX_RESOLUTION_4X4 else, 64 if VL53L5CX_RESOLUTION_8X8 */
 #endif
-#ifndef SAMPLES
-  #define SAMPLES           MATRIX_RESOLUTION * SUCCESSIVE_MATRIX /* In this specific application, the samples is defined by the resolution * successive_matrix */
+#ifndef FRAMES
+  #define FRAMES            	1                                     /* Should be between 1 & 32 */
 #endif
 #ifndef DISTANCE_ODR
-  #define DISTANCE_ODR      15                                    /* Should be between 1 -> 60Hz for VL53L5CX_RESOLUTION_4X4 and 1 -> 15Hz for VL53L5CX_RESOLUTION_8X8 */
+  #define DISTANCE_ODR      	15                                    /* Should be between 1 -> 60Hz for VL53L5CX_RESOLUTION_4X4 and 1 -> 15Hz for VL53L5CX_RESOLUTION_8X8 */
 #endif
 /************************************************************ Datalogger / NEAI mode part ************************************************************/
 #ifndef NEAI_MODE
-  #define NEAI_MODE         0                                     /* 0: Datalogger mode, 1: NEAI functions mode */
+  #define NEAI_MODE         	0                                     /* 0: Datalogger mode, 1: NEAI functions mode */
 #endif
 #if (NEAI_MODE == 1)
   #ifndef NEAI_LEARN_NB
-    #define NEAI_LEARN_NB   20                                    /* Number of buffers to be learn by the NEAI library */
+    #define NEAI_LEARN_NB   	20                                    /* Number of buffers to be learn by the NEAI library */
   #endif
 #endif
 /* USER CODE END PD */
@@ -73,11 +72,11 @@ UART_HandleTypeDef huart1;
 
 /* USER CODE BEGIN PV */
 uint8_t status, isAlive, isReady;
-uint8_t matrix_counter = 0, neai_similarity = 0, neai_state = 0;
+uint8_t frame_counter = 0, neai_similarity = 0, neai_state = 0;
 volatile uint8_t vl53l5_data_ready = 0;
 uint16_t neai_cnt = 0;
 float neai_time = 0.0;
-float neai_buffer[SAMPLES] = {0.0};
+float neai_buffer[FRAME_RESOLUTION * FRAMES] = {0.0};
 VL53L5CX_Configuration Dev; /* Sensor configuration */
 VL53L5CX_ResultsData Results; /* Results data from VL53L5CX */
 
@@ -148,17 +147,17 @@ int main(void)
   {
     if(vl53l5_data_ready) {
       vl53l5cx_get_ranging_data(&Dev, &Results);
-      for(uint16_t i = 0; i < MATRIX_RESOLUTION; i++)
+      for(uint16_t i = 0; i < FRAME_RESOLUTION; i++)
       {
-        neai_buffer[(matrix_counter * MATRIX_RESOLUTION) + i] =
+        neai_buffer[(frame_counter * FRAME_RESOLUTION) + i] =
         (Results.target_status[VL53L5CX_NB_TARGET_PER_ZONE * i] != 0xFF) ? Results.distance_mm[VL53L5CX_NB_TARGET_PER_ZONE * i] : 0;
       }
-      if (matrix_counter < SUCCESSIVE_MATRIX - 1) {
-        matrix_counter++;
+      if (frame_counter < FRAMES - 1) {
+        frame_counter++;
       }
       else {
         status = vl53l5cx_stop_ranging(&Dev);
-        matrix_counter = 0;
+        frame_counter = 0;
 #if NEAI_MODE
         uint32_t cycles_cnt = 0;
         if (neai_cnt < NEAI_LEARN_NB) {
@@ -179,7 +178,7 @@ int main(void)
                 neai_similarity, neai_state, cycles_cnt, neai_time, HAL_RCC_GetSysClockFreq());
         }
 #else
-        for (uint16_t i = 0; i < SAMPLES; i++) {
+        for (uint16_t i = 0; i < (uint16_t) (FRAME_RESOLUTION * FRAMES); i++) {
           printf("%.3f ", neai_buffer[i]);
         }
         printf("\n");
