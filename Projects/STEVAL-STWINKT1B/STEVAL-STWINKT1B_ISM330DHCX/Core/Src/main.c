@@ -47,20 +47,16 @@
 #define MAX_FIFO_SIZE                   256                       /* The maximum number of data we can get in the FIFO is 512 but here we define max to 256 for our need */
 #define FIFO_FULL                       512                       /* FIFO full size */
 /************************************************************ Sensor type part ************************************************************/
-#define GYROSCOPE                       0
-#define ACCELEROMETER                   1
-#ifndef SENSOR_TYPE
-  #define SENSOR_TYPE                   ACCELEROMETER             /* Here we define the data type we're going to collect */
-#endif
+#define ACCELEROMETER                                             /* Could be either ACCELEROMETER or GYROSCOPE */
 /************************************************************ Sensors configuration part ************************************************************/
-#if (SENSOR_TYPE == ACCELEROMETER)
+#ifdef ACCELEROMETER
   #ifndef ACCELEROMETER_ODR
     #define ACCELEROMETER_ODR           ISM330DHCX_XL_ODR_1666Hz  /* Shoud be between ISM330DHCX_XL_ODR_12Hz5 and ISM330DHCX_XL_ODR_6667Hz */
   #endif
   #ifndef ACCELEROMETER_FS
     #define ACCELEROMETER_FS            ISM330DHCX_2g             /* Should be between ISM330DHCX_2g and ISM330DHCX_8g */
   #endif
-#elif (SENSOR_TYPE == GYROSCOPE)
+#else
   #ifndef GYROSCOPE_ODR
     #define GYROSCOPE_ODR               ISM330DHCX_GY_ODR_1666Hz  /* Shoud be between ISM330DHCX_GY_ODR_12Hz5 and ISM330DHCX_GY_ODR_6667Hz */
   #endif
@@ -786,11 +782,11 @@ static int32_t platform_read(void *handle, uint8_t reg, uint8_t *bufp, uint16_t 
 static void ism330dhcx_initialize()
 {
   ism330dhcx_initialize_basics();
-#if (SENSOR_TYPE == ACCELEROMETER)
+#ifdef ACCELEROMETER
   /* Accelelerometer configuration */
   ism330dhcx_xl_data_rate_set(&dev_ctx, ACCELEROMETER_ODR);
   ism330dhcx_xl_full_scale_set(&dev_ctx, ACCELEROMETER_FS);
-#elif (SENSOR_TYPE == GYROSCOPE)
+#else
   /* Gyroscope configuration */
   ism330dhcx_gy_data_rate_set(&dev_ctx, GYROSCOPE_ODR);
   ism330dhcx_gy_full_scale_set(&dev_ctx, GYROSCOPE_FS);
@@ -838,11 +834,11 @@ static void ism330dhcx_initialize_basics()
  */
 static void ism330dhcx_initialize_fifo()
 {
-#if (SENSOR_TYPE == ACCELEROMETER)
+#ifdef ACCELEROMETER
   /* Batch odr config */
   ism330dhcx_fifo_xl_batch_set(&dev_ctx, ACCELEROMETER_ODR);
   ism330dhcx_fifo_gy_batch_set(&dev_ctx, 0);
-#elif (SENSOR_TYPE == GYROSCOPE)
+#else
   /* Batch odr config */
   ism330dhcx_fifo_xl_batch_set(&dev_ctx, 0);
   ism330dhcx_fifo_gy_batch_set(&dev_ctx, GYROSCOPE_ODR);
@@ -917,7 +913,7 @@ static void ism330dhcx_get_buffer_from_fifo(uint16_t nb)
 static float ism330dhcx_convert_gyro_data_to_mdps(int16_t gyro_raw_data)
 {
   float gyro_data_mdps = 0.0;
-#if (SENSOR_TYPE == GYROSCOPE)
+#ifdef GYROSCOPE
   switch (GYROSCOPE_FS)
   {
   case ISM330DHCX_125dps:
@@ -958,7 +954,7 @@ static float ism330dhcx_convert_gyro_data_to_mdps(int16_t gyro_raw_data)
 static float ism330dhcx_convert_accel_data_to_mg(int16_t accel_raw_data)
 {
   float accel_data_mg = 0.0;
-#if (SENSOR_TYPE == ACCELEROMETER)
+#ifdef ACCELEROMETER
   switch (ACCELEROMETER_FS)
   {
   case ISM330DHCX_2g:

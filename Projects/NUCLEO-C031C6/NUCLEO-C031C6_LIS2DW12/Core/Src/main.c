@@ -455,7 +455,6 @@ static void lis2dw12_initialize()
 static float lis2dw12_convert_data_to_mg(int16_t accel_raw_data)
 {
   float accel_data_mg = 0.0;
-#if (SENSOR_TYPE == ACCELEROMETER)
   switch (ACCELEROMETER_FS)
   {
   case LIS2DW12_2g:
@@ -474,7 +473,6 @@ static float lis2dw12_convert_data_to_mg(int16_t accel_raw_data)
     accel_data_mg = 0.0;
     break;
   }
-#endif
   return accel_data_mg;
 }
 

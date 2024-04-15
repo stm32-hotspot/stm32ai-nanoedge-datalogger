@@ -674,7 +674,7 @@ static void vl53l5cx_initialize()
   }
 
   status = vl53l5cx_set_ranging_frequency_hz(&Dev, DISTANCE_ODR);
-  status = vl53l5cx_set_resolution(&Dev, VL53L5CX_RESOLUTION_8X8);
+  status = vl53l5cx_set_resolution(&Dev, FRAME_RESOLUTION);
   status = vl53l5cx_set_ranging_mode(&Dev, VL53L5CX_RANGING_MODE_CONTINUOUS);
   status = vl53l5cx_start_ranging(&Dev);
 }

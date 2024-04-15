@@ -46,22 +46,18 @@
 #endif
 #define MAX_FIFO_SIZE                   256                     /* The maximum number of data we can get in the FIFO is 512 but here we define max to 256 for our need */
 #define FIFO_FULL                       512                     /* FIFO full size */
-#define FIFO_WORD                       7                         /* FIFO word size composed of 1 byte which is identification tag & 6 bytes of fixed data */
+#define FIFO_WORD                       7                       /* FIFO word size composed of 1 byte which is identification tag & 6 bytes of fixed data */
 /************************************************************ Sensor type part ************************************************************/
-#define GYROSCOPE                       0
-#define ACCELEROMETER                   1
-#ifndef SENSOR_TYPE
-  #define SENSOR_TYPE                   ACCELEROMETER           /* Here we define the data type we're going to collect */
-#endif
+#define ACCELEROMETER                                           /* Could be either ACCELEROMETER or GYROSCOPE */
 /************************************************************ Sensors configuration part ************************************************************/
-#if (SENSOR_TYPE == ACCELEROMETER)
+#ifdef ACCELEROMETER
   #ifndef ACCELEROMETER_ODR
     #define ACCELEROMETER_ODR           LSM6DSO_XL_ODR_1667Hz   /* Shoud be between LSM6DSO_XL_ODR_12Hz5 and LSM6DSO_XL_ODR_6667Hz */
   #endif
   #ifndef ACCELEROMETER_FS
     #define ACCELEROMETER_FS            LSM6DSO_2g              /* Should be between LSM6DSO_2g and LSM6DSO_16g */
   #endif
-#elif (SENSOR_TYPE == GYROSCOPE)
+#else
   #ifndef GYROSCOPE_ODR
     #define GYROSCOPE_ODR               LSM6DSO_GY_ODR_1667Hz   /* Shoud be between LSM6DSO_GY_ODR_12Hz5 and LSM6DSO_GY_ODR_6667Hz */
   #endif
@@ -484,11 +480,11 @@ static int32_t platform_read(void *handle, uint8_t reg, uint8_t *bufp,
 static void lsm6dso_initialize()
 {
   lsm6dso_initialize_basics();
-#if (SENSOR_TYPE == ACCELEROMETER)
+#ifdef ACCELEROMETER
   /* Accelelerometer configuration */
   lsm6dso_xl_data_rate_set(&dev_ctx, ACCELEROMETER_ODR);
   lsm6dso_xl_full_scale_set(&dev_ctx, ACCELEROMETER_FS);
-#elif (SENSOR_TYPE == GYROSCOPE)
+#else
   /* Gyroscope configuration */
   lsm6dso_gy_data_rate_set(&dev_ctx, GYROSCOPE_ODR);
   lsm6dso_gy_full_scale_set(&dev_ctx, GYROSCOPE_FS);
@@ -535,11 +531,11 @@ static void lsm6dso_initialize_basics()
  */
 static void lsm6dso_initialize_fifo()
 {
-#if (SENSOR_TYPE == ACCELEROMETER)
+#ifdef ACCELEROMETER
   /* Batch odr config */
   lsm6dso_fifo_xl_batch_set(&dev_ctx, ACCELEROMETER_ODR);
   lsm6dso_fifo_gy_batch_set(&dev_ctx, 0);
-#elif (SENSOR_TYPE == GYROSCOPE)
+#else
   /* Batch odr config */
   lsm6dso_fifo_xl_batch_set(&dev_ctx, 0);
   lsm6dso_fifo_gy_batch_set(&dev_ctx, GYROSCOPE_ODR);
@@ -610,7 +606,7 @@ static void lsm6dso_get_buffer_from_fifo(uint16_t nb)
 static float lsm6dso_convert_gyro_data_to_mdps(int16_t gyro_raw_data)
 {
   float gyro_data_mdps = 0.0;
-#if (SENSOR_TYPE == GYROSCOPE)
+#ifdef GYROSCOPE
   switch (GYROSCOPE_FS)
   {
   case LSM6DSO_125dps:
@@ -648,7 +644,7 @@ static float lsm6dso_convert_gyro_data_to_mdps(int16_t gyro_raw_data)
 static float lsm6dso_convert_accel_data_to_mg(int16_t accel_raw_data)
 {
   float accel_data_mg = 0.0;
-#if (SENSOR_TYPE == ACCELEROMETER)
+#ifdef ACCELEROMETER
   switch (ACCELEROMETER_FS)
   {
   case LSM6DSO_2g:
