@@ -44,11 +44,11 @@
 									<listOptionValue builtIn="false" value="STM32F401xE"/>
 								</option>
 								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.compiler.option.includepaths.1634836979" name="Include paths (-I)" superClass="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.compiler.option.includepaths" useByScannerDiscovery="false" valueType="includePath">
-									<listOptionValue builtIn="false" value="../Core/Inc"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Core/Inc}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Drivers/CMSIS/Core/Include}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/NUCLEO-F401RE_IIS2DLPC/Drivers/Sensors/iis2mdc-pid}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/NUCLEO-F401RE_IIS2DLPC/Drivers/STM32CubeF4/cmsis_device_f4/Include}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/NUCLEO-F401RE_IIS2DLPC/Drivers/STM32CubeF4/stm32f4xx_hal_driver/Inc}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Drivers/Sensors/iis2mdc-pid}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Drivers/STM32CubeF4/cmsis_device_f4/Include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Drivers/STM32CubeF4/stm32f4xx_hal_driver/Inc}&quot;"/>
 								</option>
 								<inputType id="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.compiler.input.c.213470621" superClass="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.compiler.input.c"/>
 							</tool>
