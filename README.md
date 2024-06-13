@@ -99,7 +99,7 @@ Here are the wire connections between the development boards and the sensors. We
 |   **LPS22HH**    |                                                              |                                                              | *1) I2C1 - SCL <> PB8 // SDA <> PB9 <br />2) EXTI10 <> PB10* |                      |                                                              |                                                              |                                                              |                                             |                                                            |
 |   **LSM6DSO**    |                                                              | *1) I2C1 - SCL <> PB8 // SDA <> PB9 <br />2) EXTI10 <> PB10* | *1) I2C1 - SCL <> PB8 // SDA <> PB9 <br />2) EXTI5 <> PB5*   |                      |                                                              |                                                              |                                                              |                                             | *1) I2C1 - SCL <> PB6 // SDA <> PB7 <br />2) EXTI3 <> PF3* |
 |   **MP23ABS1**   |                                                              |                                                              |                                                              |                      |                                                              |                                                              | *1) ADC1_IN2 <> PC1*                                         |                                             |                                                            |
-|   **VL53L5CX**   | *1) I2C2 - SCL <> PH4 // SDA <> PH5 <br />2) EXTI5 <> PG5*   |                                                              |                                                              |                      |                                                              |                                                              |                                                              |                                             |                                                            |
+|   **VL53L5CX**   | *1) I2C2 - SCL <> PH4 // SDA <> PH5 <br />2) EXTI5 <> PG5*   |                                                              | *1) I2C1 - SCL <> PB8 // SDA <> PB9<br />2) EXTI4 <> PA4*    |                      |                                                              |                                                              |                                                              |                                             |                                                            |
 
 *PS : EXTI = External Interrupt pin.*
 
@@ -127,7 +127,7 @@ Here are the macros you can modify in all the different projects :
 The "SAMPLES" definition :
 
 ```c
-#define SAMPLES           2048    /* Should be between 16 & 4096 */
+#define SAMPLES 2048 /* Should be between 16 & 4096 */
 ```
 
 For "SAMPLES" please set samples between 16 & 4096 because, get less than 16 values in a buffer has not really sense in term of machine learning & get more than 4096 is risky regarding the micro controller RAM memory.
@@ -135,19 +135,19 @@ For "SAMPLES" please set samples between 16 & 4096 because, get less than 16 val
 The "ODR" (output data rate) definition, depending on your sensor. Here are some examples :
 
 ```c
-#define ANALOG_ODR        1000    /* Should be between 1 & 100 kHz */
+#define ANALOG_ODR 1000 /* Should be between 1 & 100 kHz */
 ```
 
 ```c
-#define MAGNETOMETER_ODR  IIS2MDC_ODR_100Hz   /* Shoud be between IIS2MDC_ODR_10Hz and IIS2MDC_ODR_100Hz */
+#define MAGNETOMETER_ODR IIS2MDC_ODR_100Hz /* Shoud be between IIS2MDC_ODR_10Hz and IIS2MDC_ODR_100Hz */
 ```
 
 ```c
-#define HUMIDITY_ODR  HTS221_ODR_12Hz5  /* Shoud be between HTS221_ODR_1Hz and HTS221_ODR_12Hz5 */
+#define HUMIDITY_ODR HTS221_ODR_12Hz5 /* Shoud be between HTS221_ODR_1Hz and HTS221_ODR_12Hz5 */
 ```
 
 ```c
-#define PRESSURE_ODR  LPS22HH_100_Hz  /* Shoud be between LPS22HH_1_Hz and LPS22HH_200_Hz */
+#define PRESSURE_ODR LPS22HH_100_Hz /* Shoud be between LPS22HH_1_Hz and LPS22HH_200_Hz */
 ```
 
 For the output data rate definition please make attention to respect what is written in the comment. You can't set the value of your choice, it won't work.
@@ -155,7 +155,7 @@ For the output data rate definition please make attention to respect what is wri
 The "MODE" selection :
 
 ```c
-#define NEAI_MODE         0       /* 0: Datalogger mode, 1: NEAI functions mode */
+#define NEAI_MODE 0 /* 0: Datalogger mode, 1: NEAI functions mode */
 ```
 
 The mode selection allows you to switch between the "Datalogger mode" & the "NEAI mode". In data logging mode the sensor data are written to the serial in a buffer whereas in NEAI mode there will be a learning phase then a detection phase.
@@ -163,7 +163,7 @@ The mode selection allows you to switch between the "Datalogger mode" & the "NEA
 If you choose the NEAI mode, you can set the number of learnings you want to perform.
 
 ```c
-#define NEAI_LEARN_NB   100     /* Number of buffers to be learn by the NEAI library */
+#define NEAI_LEARN_NB 100 /* Number of buffers to be learn by the NEAI library */
 ```
 
 Normally the number of learnings is given by NEAI Studio when you create your own library.
@@ -175,55 +175,54 @@ Normally the number of learnings is given by NEAI Studio when you create your ow
 Depending on your sensor you can select either accelerometer either gyroscope data type setting the following macro :
 
 ```c
-#define SENSOR_TYPE                   ACCELEROMETER             /* Here we define the data type we're going to collect */
+#define SENSOR_TYPE ACCELEROMETER /* Here we define the data type we're going to collect */
 ```
 
 Once you've set the previous macro, you can define the accelerometer / gyroscope output data rate with :
 
 ```c
-#define ACCELEROMETER_ODR           ISM330DHCX_XL_ODR_1666Hz  /* Shoud be between ISM330DHCX_XL_ODR_12Hz5 and ISM330DHCX_XL_ODR_6667Hz */
+#define ACCELEROMETER_ODR ISM330DHCX_XL_ODR_1666Hz /* Shoud be between ISM330DHCX_XL_ODR_12Hz5 and ISM330DHCX_XL_ODR_6667Hz */
 ```
 
 ```c
-#define GYROSCOPE_ODR               ISM330DHCX_GY_ODR_1666Hz  /* Shoud be between ISM330DHCX_GY_ODR_12Hz5 and ISM330DHCX_GY_ODR_6667Hz */
+#define GYROSCOPE_ODR ISM330DHCX_GY_ODR_1666Hz /* Shoud be between ISM330DHCX_GY_ODR_12Hz5 and ISM330DHCX_GY_ODR_6667Hz */
 ```
 
 And also the range :
 
 ```c
-#define ACCELEROMETER_FS            ISM330DHCX_2g             /* Should be between ISM330DHCX_2g and ISM330DHCX_8g */
+#define ACCELEROMETER_FS ISM330DHCX_2g /* Should be between ISM330DHCX_2g and ISM330DHCX_8g */
 ```
 
 ```c
-#define GYROSCOPE_FS                ISM330DHCX_2000dps        /* Should be between ISM330DHCX_125dps and ISM330DHCX_4000dps */
+#define GYROSCOPE_FS ISM330DHCX_2000dps /* Should be between ISM330DHCX_125dps and ISM330DHCX_4000dps */
 ```
 
 Please make attention to set "possible" values for these macro. Look at the comment or take a look at the sensor datasheet.
 
 ##### Time of flight
 
-For the TOF sensor, the samples if defined by the MATRIX_RESOLUTION & the SUCCESSIVE_MATRIX number. For optimal use, I suggest to let the MATRIX_RESOLUTION to 64 which is the biggest resolution for the VL53L5CX. But you have to define the SUCCESSIVE_MATRIX you want depending on the phenomenom you want to observe :
+For the TOF sensor, the "samples" is defined by the FRAME_RESOLUTION * FRAMES number. For optimal use, I suggest to let the FRAME_RESOLUTION to 64 which is the highest resolution for the VL53L5CX. But you have to define the FRAMES depending on the phenomenom you want to observe :
 
 ```c
-#define MATRIX_RESOLUTION   64                                    /* 16 if resolution is VL53L5CX_RESOLUTION_4X4 else, 64 if VL53L5CX_RESOLUTION_8X8 */
-#define SUCCESSIVE_MATRIX   8                                     /* The number of successive matrix to get in the neai buffer */
-  #define SAMPLES           MATRIX_RESOLUTION * SUCCESSIVE_MATRIX /* In this specific application, the samples is defined by the resolution * successive_matrix */
+#define FRAME_RESOLUTION 64 /* 16 if resolution is VL53L5CX_RESOLUTION_4X4 else, 64 if VL53L5CX_RESOLUTION_8X8 */
+#define FRAMES 1 /* Should be between 1 & 32 */
 ```
 
 The TOF data rate is defined using the following macro :
 
 ```c
-#define DISTANCE_ODR      15                                    /* Should be between 1 -> 60Hz for VL53L5CX_RESOLUTION_4X4 and 1 -> 15Hz for VL53L5CX_RESOLUTION_8X8 */
+#define DISTANCE_ODR 15 /* Should be between 1 -> 60Hz for VL53L5CX_RESOLUTION_4X4 and 1 -> 15Hz for VL53L5CX_RESOLUTION_8X8 */
 ```
 
-Make attention that depending on the MATRIX_RESOLUTION, the data can't be set at the same values.
+*PS : Make attention that depending on the MATRIX_RESOLUTION, the "data rate" can't be set at the same values.*
 
 #### In all projects
 
 You've the possibility to set the AXIS number. You can set 1, 2 or 3 axes but if you modify this macro **you have to modify the rest of the code by yourself**.
 
 ```c
-#define AXIS              3                   /* Axis should be defined between 1 and 3 */
+#define AXIS 3 /* Axis should be defined between 1 and 3 */
 ```
 
 #### Prohibited
@@ -231,9 +230,9 @@ You've the possibility to set the AXIS number. You can set 1, 2 or 3 axes but if
 For accelerometer / gyroscope sensors do not modify the following macros !
 
 ```c
-#define MAX_FIFO_SIZE                   256                       /* The maximum number of data we can get in the FIFO is 512 but here we define max to 256 for our need */
-#define FIFO_FULL                       512                       /* FIFO full size */
-#define FIFO_WORD                       7                         /* FIFO word size composed of 1 byte which is identification tag & 6 bytes of fixed data */
+#define MAX_FIFO_SIZE 256 /* The maximum number of data we can get in the FIFO is 512 but here we define max to 256 for our need */
+#define FIFO_FULL 512 /* FIFO full size */
+#define FIFO_WORD 7 /* FIFO word size composed of 1 byte which is identification tag & 6 bytes of fixed data */
 ```
 
 ### Data acquisition
